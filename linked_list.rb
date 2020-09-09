@@ -11,9 +11,7 @@ class LinkedList
     attr_reader :head, :tail
 
     def initialize(head = nil)
-        if head.class == Node
-            @head = head
-        elsif head.class == NilClass 
+        if head.class == Node || head.class == NilClass
             @head = head
         else
             @head = Node.new(head)
