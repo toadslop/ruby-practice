@@ -1,35 +1,24 @@
 class Node
+    attr_accessor :data, :next_node
+
     def initialize(data, next_node = nil)
         @data = data
         @next_node = next_node
     end
-
-    def data
-        @data
-    end
-
-    def next_node
-        @next_node
-    end
-
-    def next_node=(next_node)
-        @next_node = next_node
-    end
 end
 
-class Linked_list
+class LinkedList
+    attr_reader :head
+
     def initialize(head = nil)
-        if head.class == Node
+        case head.class
+        when Node
             @head = head
-        elsif head == nil
+        when NilClass 
             @head = head
         else
             @head = Node.new(head)
         end
-    end
-
-    def head
-        @head
     end
 
     def insert(data)
@@ -46,11 +35,12 @@ class Linked_list
     end
 
     def print_values
-        print "#{@head.data} "
+        print_value = "#{@head.data}"
         temp = @head
         while temp.next_node 
-            print "#{temp.next_node.data} "
+            print_value += " #{temp.next_node.data}"
             temp = temp.next_node
         end
+        puts print_value
     end
 end
