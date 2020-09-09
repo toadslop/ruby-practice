@@ -75,4 +75,18 @@ class LinkedList
         end
         array
     end
+
+    def find(data)
+        current_node = @head
+        found = false
+        while current_node.next_node
+            if current_node.data == data
+                found = true
+                current_node
+                break
+            end
+        end
+
+        false
+    end
 end
