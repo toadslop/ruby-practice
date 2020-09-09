@@ -19,23 +19,40 @@ class LinkedList
         @tail = @head
     end
 
-    def insert(data, side = 1)
-        case side
-        when 0
-            temp = @head
+    def prepend(data)
+        temp = @head
+        @head = Node.new(data)
+        @head.next_node = temp
+        @tail = @head if @tail.nil?
+    end
+
+    def append(data)
+        if @tail.nil?
             @head = Node.new(data)
-            @head.next_node = temp
-        when 1
-            if @tail.nil?
-                @head = Node.new(data)
-                @tail = @head
-            else
-                new_node = Node.new(data)
-                @tail.next_node = new_node
-                @tail = new_node
-            end
+            @tail = @head
         else
-            puts 'Error! Side must be 0 or 1.'
+            new_node = Node.new(data)
+            @tail.next_node = new_node
+            @tail = new_node
+        end
+    end
+
+    def insert_after(prev_data, new_data)
+        current_node = @head
+        found = false
+        while current_node.next_node
+            if current_node.data == prev_data
+                new_node = Node.new(new_data)
+                new_node.next_node = current_node.next_node
+                current_node.next_node = new_node
+                found = true
+                break
+            end
+            current_node = current_node.next_node
+        end
+
+        if not found
+            puts 'Error! Datum not found in list.'
         end
     end
 
