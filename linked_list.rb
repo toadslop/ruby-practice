@@ -36,7 +36,6 @@ class Linked_list
         if @head
             new_node = Node.new(data)
             temp = @head
-            p new_node
             while(temp.next_node)
                 temp = temp.next_node
             end
