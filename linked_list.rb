@@ -8,17 +8,17 @@ class Node
 end
 
 class LinkedList
-    attr_reader :head
+    attr_reader :head, :tail
 
     def initialize(head = nil)
-        case head.class
-        when Node
+        if head.class == Node
             @head = head
-        when NilClass 
+        elsif head.class == NilClass 
             @head = head
         else
             @head = Node.new(head)
         end
+        @tail = @head
     end
 
     def insert(data)
