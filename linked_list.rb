@@ -21,26 +21,43 @@ class LinkedList
         @tail = @head
     end
 
-    def insert(data)
-        if @head
-            new_node = Node.new(data)
+    def insert(data, side = 1)
+        case side
+        when 0
             temp = @head
-            while(temp.next_node)
-                temp = temp.next_node
+            @head = Node.new(data)
+            @head.next_node = temp
+        when 1
+            if @tail.nil?
+                @head = Node.new(data)
+                @tail = @head
+            else
+                new_node = Node.new(data)
+                @tail.next_node = new_node
+                @tail = new_node
             end
-            temp.next_node = new_node
         else
-            @head = Node.new(data) 
+            puts 'Error! Side must be 0 or 1.'
         end
     end
 
-    def print_values
-        print_value = "#{@head.data}"
+    def values
+        values = "#{@head.data}"
         temp = @head
         while temp.next_node 
             print_value += " #{temp.next_node.data}"
             temp = temp.next_node
         end
-        puts print_value
+        values
+    end
+
+    def to_a
+        array = [@head.data]
+        temp = @head
+        while temp.next_node
+            array << temp.next_node
+            temp = temp.next_node
+        end
+        array
     end
 end
