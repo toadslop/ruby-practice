@@ -45,7 +45,7 @@ class LinkedList
         values = "#{@head.data}"
         temp = @head
         while temp.next_node 
-            print_value += " #{temp.next_node.data}"
+            values += " #{temp.next_node.data}"
             temp = temp.next_node
         end
         values
