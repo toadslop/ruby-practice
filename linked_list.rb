@@ -55,7 +55,7 @@ class LinkedList
         array = [@head.data]
         temp = @head
         while temp.next_node
-            array << temp.next_node
+            array << temp.next_node.data
             temp = temp.next_node
         end
         array
