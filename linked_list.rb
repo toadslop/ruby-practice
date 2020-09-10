@@ -57,11 +57,10 @@ class LinkedList
     end
 
     def values
-        values = "#{@head.data}"
-        temp = @head
-        while temp.next_node 
-            values += " #{temp.next_node.data}"
-            temp = temp.next_node
+        values = ""
+        self.each do |node|
+            values += "#{node.data}"
+            values += " " unless node.next_node.nil?
         end
         values
     end
@@ -110,3 +109,4 @@ ll.each { |node| puts node.data }
 
 p ll.find(4)
 p ll.to_a
+p ll.values
