@@ -67,23 +67,18 @@ class LinkedList
     end
 
     def to_a
-        array = [@head.data]
-        temp = @head
-        while temp.next_node
-            array << temp.next_node.data
-            temp = temp.next_node
+        array = []
+        self.each do |node|
+            array << node.data
         end
         array
     end
 
     def find(data)
         current_node = @head
-        found = false
-        while current_node.next_node
-            if current_node.data == data
-                found = true
-                current_node
-                break
+        self.each do |node|
+            if node.data == data
+                return node
             end
         end
         false
@@ -112,3 +107,6 @@ ll.append(2)
 ll.append(3)
 puts ll.values
 ll.each { |node| puts node.data }
+
+p ll.find(4)
+p ll.to_a
