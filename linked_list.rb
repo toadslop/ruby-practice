@@ -86,7 +86,29 @@ class LinkedList
                 break
             end
         end
-
         false
     end
+
+    def delete(data)
+        current_node = @head
+        prev_node = nil
+        until current_node.data == data
+            current_node = current_node.next_node
+        end
+    end
+
+    def each
+        current_node = @head
+        until current_node.nil?
+            yield(current_node)
+            current_node = current_node.next_node
+        end
+    end
 end
+
+ll = LinkedList.new
+ll.append(1)
+ll.append(2)
+ll.append(3)
+puts ll.values
+ll.each { |node| puts node.data }
