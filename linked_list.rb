@@ -84,11 +84,19 @@ class LinkedList
     end
 
     def delete(data)
-        current_node = @head
         prev_node = nil
-        until current_node.data == data
-            current_node = current_node.next_node
+        self.each do |current_node|
+            if current_node.data == data
+                unless prev_node.nil?
+                    prev_node.next_node = current_node.next_node
+                else
+                    @head = current_node.next_node
+                end
+                return true
+            end
+            prev_node = current_node
         end
+        false
     end
 
     def each
@@ -109,4 +117,6 @@ ll.each { |node| puts node.data }
 
 p ll.find(4)
 p ll.to_a
+p ll.values
+ll.delete(1)
 p ll.values
