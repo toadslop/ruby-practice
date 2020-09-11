@@ -54,6 +54,8 @@ class BinaryTree
       queue = []
       queue.append(@head)
 
+      return @head if @head.data = data
+
       while queue.length
         temp = queue[0]
         queue = queue.drop(1)
@@ -86,6 +88,7 @@ class BinaryTree
     end
 end
 
+#TODO write an each method and refactor find and insert
 # tree = BinaryTree.new
 
 # tree.head = TreeNode.new(13)
@@ -96,5 +99,5 @@ end
 # tree.head.right.left = TreeNode.new(16)
 # tree.head.right.right = TreeNode.new(9)
 # tree.in_order
-# tree.delete(12)
+# tree.delete(13)
 # tree.in_order
