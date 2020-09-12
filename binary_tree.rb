@@ -1,3 +1,5 @@
+require_relative 'queue'
+
 class TreeNode
     attr_accessor :data, :left, :right
 
@@ -27,12 +29,11 @@ class BinaryTree
     end
 
     def insert(data)
-      queue = []
+      queue = Queue.new
       queue.append(@head)
 
       while queue.length
-        temp = queue[0]
-        queue = queue.drop(1)
+        temp = queue.remove
 
         unless temp.left
           temp.left = TreeNode.new(data)
@@ -89,15 +90,18 @@ class BinaryTree
 end
 
 #TODO write an each method and refactor find and insert
-# tree = BinaryTree.new
+tree = BinaryTree.new
 
-# tree.head = TreeNode.new(13)
-# tree.head.left = TreeNode.new(12)
-# tree.head.left.left = TreeNode.new(4)
-# tree.head.left.right = TreeNode.new(19)
-# tree.head.right = TreeNode.new(10)
-# tree.head.right.left = TreeNode.new(16)
-# tree.head.right.right = TreeNode.new(9)
-# tree.in_order
-# tree.delete(13)
-# tree.in_order
+tree.head = TreeNode.new(13)
+tree.head.left = TreeNode.new(12)
+tree.head.left.left = TreeNode.new(4)
+tree.head.left.right = TreeNode.new(19)
+tree.head.right = TreeNode.new(10)
+tree.head.right.left = TreeNode.new(16)
+tree.head.right.right = TreeNode.new(9)
+tree.in_order
+puts ""
+tree.delete(13)
+tree.in_order
+p tree.insert(100)
+p tree.in_order
