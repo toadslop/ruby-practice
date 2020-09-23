@@ -11,9 +11,7 @@ class Queue
     end
 
     def remove
-        front = @data[0]
-        @data = @data.drop(1)
         @length -= 1
-        front
+        @data.delete_at(0)
     end
 end
