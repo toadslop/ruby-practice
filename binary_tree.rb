@@ -21,12 +21,36 @@ class BinaryTree
       df_trav_inorder { |temp| print "#{temp} " }
     end
 
+    def pre_order(temp = @head)
+      df_trav_preorder { |temp| print "#{temp} "}
+    end
+
+    def post_order(temp = @head)
+      df_trav_postorder { |temp| print "#{temp} "}
+    end
+
     def df_trav_inorder(start = @head, &block)
       return unless start
 
       df_trav_inorder(start.left, &block)
       yield(start.data)
       df_trav_inorder(start.right, &block)
+    end
+
+    def df_trav_preorder(start = @head, &block)
+      return unless start
+
+      yield(start.data)
+      df_trav_preorder(start.left, &block)
+      df_trav_preorder(start.right, &block)
+    end
+
+    def df_trav_postorder(start = @head, &block)
+      return unless start
+
+      df_trav_postorder(start.left, &block)
+      df_trav_postorder(start.right, &block)
+      yield(start.data)
     end
 
     def insert(data)
@@ -93,17 +117,18 @@ end
 #TODO write an each method and refactor find and insert
 tree = BinaryTree.new
 
-tree.head = TreeNode.new(13)
-tree.head.left = TreeNode.new(12)
+tree.head = TreeNode.new(1)
+tree.head.left = TreeNode.new(2)
 tree.head.left.left = TreeNode.new(4)
-tree.head.left.right = TreeNode.new(19)
-tree.head.right = TreeNode.new(10)
-tree.head.right.left = TreeNode.new(16)
-tree.head.right.right = TreeNode.new(9)
+tree.head.left.right = TreeNode.new(5)
+tree.head.right = TreeNode.new(3)
+# tree.head.right.left = TreeNode.new(16)
+# tree.head.right.right = TreeNode.new(9)
 # tree.in_order
 # puts ""
-tree.delete(13)
+# tree.delete(13)
 # tree.in_order
 # puts ""
-tree.insert(100)
+# tree.insert(100)
 tree.in_order
+tree.post_order
