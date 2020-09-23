@@ -18,14 +18,15 @@ class BinaryTree
     end
 
     def in_order(temp = @head)
-      unless temp
-        return
-      end
+      df_trav_inorder { |temp| print "#{temp} " }
+    end
 
-      in_order(temp.left)
-      puts temp.data.to_s + " "
-      in_order(temp.right)
+    def df_trav_inorder(start = @head, &block)
+      return unless start
 
+      df_trav_inorder(start.left, &block)
+      yield(start.data)
+      df_trav_inorder(start.right, &block)
     end
 
     def insert(data)
@@ -99,9 +100,10 @@ tree.head.left.right = TreeNode.new(19)
 tree.head.right = TreeNode.new(10)
 tree.head.right.left = TreeNode.new(16)
 tree.head.right.right = TreeNode.new(9)
-tree.in_order
-puts ""
+# tree.in_order
+# puts ""
 tree.delete(13)
+# tree.in_order
+# puts ""
+tree.insert(100)
 tree.in_order
-p tree.insert(100)
-p tree.in_order
