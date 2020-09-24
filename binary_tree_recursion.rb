@@ -1,4 +1,5 @@
 require_relative 'queue'
+require_relative 'stack'
 
 class TreeNode
     attr_accessor :data, :left, :right
@@ -17,6 +18,7 @@ class BinaryTree
       @head = head
     end
 
+    # print functions
     def in_order(temp = @head)
       df_trav_inorder { |temp| print "#{temp} " }
     end
@@ -29,6 +31,7 @@ class BinaryTree
       df_trav_postorder { |temp| print "#{temp} "}
     end
 
+    # Traversals with recursion
     def df_trav_inorder(start = @head, &block)
       return unless start
 
@@ -53,6 +56,7 @@ class BinaryTree
       yield(start.data)
     end
 
+    # adding and deleting nodes
     def insert(data)
       queue = Queue.new
       queue.append(@head)
@@ -76,6 +80,19 @@ class BinaryTree
       end
     end
 
+    def delete(data)
+      deep_right = @head
+      delete_node = self.find(data)
+
+      while deep_right.right
+        deep_right = deep_right.right
+      end
+
+      delete_node.data = deep_right.data
+      deep_right.data = nil
+    end
+
+    # querying
     def find(data)
       queue = []
       queue.append(@head)
@@ -99,18 +116,6 @@ class BinaryTree
         end
       end
       return false
-    end
-
-    def delete(data)
-      deep_right = @head
-      delete_node = self.find(data)
-
-      while deep_right.right
-        deep_right = deep_right.right
-      end
-
-      delete_node.data = deep_right.data
-      deep_right.data = nil
     end
 end
 
