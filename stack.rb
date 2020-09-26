@@ -20,11 +20,3 @@ class Stack
         @data.size == 0
     end
 end
-
-# s = Stack.new
-# s.append(1)
-# s.append(2)
-# s.append(3)
-# p s
-# r = s.remove
-# puts r
